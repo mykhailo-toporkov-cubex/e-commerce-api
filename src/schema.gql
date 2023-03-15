@@ -1,0 +1,49 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Auth {
+  token: String!
+  user: User!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  register(registerInput: RegisterInput!): Auth!
+}
+
+type Query {
+  login(loginInput: LoginInput!): Auth!
+}
+
+input RegisterInput {
+  email: String!
+  fistName: String
+  lastName: String
+  password: String!
+  role: UserRoles! = CLIENT
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  fistName: String
+  id: String!
+  lastName: String
+  role: UserRoles!
+  updatedAt: DateTime!
+}
+
+enum UserRoles {
+  ADMIN
+  CLIENT
+}

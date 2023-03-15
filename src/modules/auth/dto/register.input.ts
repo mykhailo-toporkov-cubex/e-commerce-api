@@ -1,32 +1,38 @@
-import { UserRoles } from '@prisma/client';
+import { InputType, Field, registerEnumType } from '@nestjs/graphql';
 import {
-  IsEmail,
   IsNotEmpty,
   IsString,
-  Matches,
-  MaxLength,
+  IsEmail,
   MinLength,
+  MaxLength,
+  Matches,
   IsOptional,
-  IsNumber,
 } from 'class-validator';
+import { UserRoles } from '@prisma/client';
 
-export class UpdateUserDto {
+registerEnumType(UserRoles, {
+  name: 'UserRoles',
+});
+
+@InputType()
+export class RegisterInput {
+  @Field(() => String, { nullable: true })
   @IsOptional()
-  @IsString()
   @MaxLength(64)
   fistName: string;
 
+  @Field(() => String, { nullable: true })
   @IsOptional()
-  @IsString()
   @MaxLength(64)
   lastName: string;
 
-  @IsOptional()
-  @IsEmail()
+  @Field(() => String)
   @IsNotEmpty()
+  @IsString()
+  @IsEmail()
   email: string;
 
-  @IsOptional()
+  @Field(() => String)
   @IsString()
   @IsNotEmpty()
   @MinLength(8)
@@ -48,14 +54,8 @@ export class UpdateUserDto {
   })
   password: string;
 
+  @Field(() => UserRoles, { defaultValue: 'CLIENT' })
   @IsOptional()
   @IsString()
-  @Matches(RegExp(`^${Object.values(UserRoles).join('|')}$`), {
-    message: 'there is no such role',
-  })
   role: UserRoles;
-
-  @IsOptional()
-  @IsNumber()
-  vendorId: number;
 }
