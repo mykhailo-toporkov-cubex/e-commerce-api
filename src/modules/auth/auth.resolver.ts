@@ -7,6 +7,8 @@ import { Auth } from './entities/auth.entitiy';
 import { GqlAuthGuard } from './guards/gql-auth.guard';
 import { User } from './entities/user.entity';
 import { GoogleAuthGuard } from './guards/google-auth.guard';
+import { GoogleInput } from './dto/google';
+import { AuthGuard } from '@nestjs/passport';
 
 @Resolver(() => Auth)
 export class AuthResolver {
@@ -26,9 +28,7 @@ export class AuthResolver {
     return this.authService.register(registerInput);
   }
 
-  @UseGuards(GoogleAuthGuard)
-  @Mutation(() => Auth)
-  loginGoogle(@Args('id') id: string) {
-    return { token: id };
-  }
+  @UseGuards(AuthGuard('google'))
+  @Query(() => String)
+  async loginGoogle() {}
 }

@@ -4,6 +4,7 @@ import { AuthResolver } from './auth.resolver';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
 import { GoogleStrategy } from './strategies/google.strategy';
+import { AuthController } from './auth.controller';
 
 @Module({
   providers: [
@@ -14,5 +15,6 @@ import { GoogleStrategy } from './strategies/google.strategy';
     GoogleStrategy,
   ],
   exports: [AuthService],
+  controllers: [AuthController],
 })
 export class AuthModule {}

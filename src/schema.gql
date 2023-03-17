@@ -18,12 +18,12 @@ input LoginInput {
 }
 
 type Mutation {
-  loginGoogle(id: String!): Auth!
   register(registerInput: RegisterInput!): Auth!
 }
 
 type Query {
   login(loginInput: LoginInput!): Auth!
+  loginGoogle: String!
 }
 
 input RegisterInput {
