@@ -9,13 +9,13 @@ export class GoogleStrategy extends PassportStrategy(Strategy) {
     super({
       clientID: config.get<string>('GOOGLE_CLIENT_ID'),
       clientSecret: config.get<string>('GOOGLE_CLIENT_SECRET'),
-      callbackURL: config.get<string>('GOOGLE_CALLBACK_URL'),
+      callbackURL: 'http://localhost:3333/auth/google/callback',
       scope: ['email', 'profile'],
     });
   }
 
   validate(
-    _accessToken: string,
+    accessToken: string,
     _refreshToken: string,
     profile: Profile,
     _done: VerifyCallback,

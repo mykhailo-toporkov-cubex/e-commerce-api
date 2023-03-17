@@ -18,6 +18,7 @@ input LoginInput {
 }
 
 type Mutation {
+  loginGoogle(id: String!): Auth!
   register(registerInput: RegisterInput!): Auth!
 }
 
