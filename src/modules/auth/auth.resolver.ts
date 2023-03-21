@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 import { User as CurrentUser } from './decorators/user.decorator';
 import { LoginInput, RegisterInput } from './dto';
 import { Auth } from './entities/auth.entitiy';
-import { User } from './entities/user.entity';
+import { User } from '../user/entities/user.entity';
 import { GqlAuthGuard, GoogleAuthGuard, FacebookAuthGuard } from './guards';
 
 @Resolver(() => Auth)

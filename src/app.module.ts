@@ -7,6 +7,7 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { join } from 'path';
 import { AuthModule } from './modules/auth/auth.module';
 import { TokenModule } from './token/token.module';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { TokenModule } from './token/token.module';
     PrismaModule,
     AuthModule,
     TokenModule,
+    UserModule,
   ],
   providers: [PrismaService],
 })

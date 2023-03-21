@@ -3,7 +3,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { TokenService } from 'src/token/token.service';
 import { LoginInput, RegisterInput } from './dto';
 import * as argon from 'argon2';
-import { User } from './entities/user.entity';
+import { User } from '../user/entities/user.entity';
 
 @Injectable()
 export class AuthService {
