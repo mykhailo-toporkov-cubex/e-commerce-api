@@ -4,11 +4,8 @@ import { AuthService } from './auth.service';
 import { User as CurrentUser } from './decorators/user.decorator';
 import { LoginInput, RegisterInput } from './dto';
 import { Auth } from './entities/auth.entitiy';
-import { GqlAuthGuard } from './guards/gql-auth.guard';
 import { User } from './entities/user.entity';
-import { GoogleAuthGuard } from './guards/google-auth.guard';
-import { GoogleInput } from './dto/google';
-import { AuthGuard } from '@nestjs/passport';
+import { GqlAuthGuard, GoogleAuthGuard, FacebookAuthGuard } from './guards';
 
 @Resolver(() => Auth)
 export class AuthResolver {
@@ -28,7 +25,15 @@ export class AuthResolver {
     return this.authService.register(registerInput);
   }
 
-  @UseGuards(AuthGuard('google'))
-  @Query(() => String)
-  async loginGoogle() {}
+  @UseGuards(GoogleAuthGuard)
+  @Query(() => Auth)
+  loginGoogle(@CurrentUser() user: User) {
+    return this.authService.login(user);
+  }
+
+  @UseGuards(FacebookAuthGuard)
+  @Query(() => Auth)
+  loginFacebook(@CurrentUser() user: User) {
+    return this.authService.login(user);
+  }
 }

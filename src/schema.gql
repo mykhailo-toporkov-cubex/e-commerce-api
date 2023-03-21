@@ -23,7 +23,8 @@ type Mutation {
 
 type Query {
   login(loginInput: LoginInput!): Auth!
-  loginGoogle: String!
+  loginFacebook: Auth!
+  loginGoogle: Auth!
 }
 
 input RegisterInput {

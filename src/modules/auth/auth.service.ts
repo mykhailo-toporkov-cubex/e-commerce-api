@@ -28,6 +28,23 @@ export class AuthService {
     return null;
   }
 
+  async findOrCreateUser(findOrCreateInput: RegisterInput) {
+    const { email, password, ...rest } = findOrCreateInput;
+    const hash = await argon.hash(password);
+
+    const user = await this.prisma.user.upsert({
+      where: { email },
+      update: {},
+      create: {
+        email,
+        hash,
+        ...rest,
+      },
+    });
+
+    return user;
+  }
+
   async login(user: User) {
     const token = this.tokenService.generateToken({
       userId: user.id,
