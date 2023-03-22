@@ -19,9 +19,13 @@ input LoginInput {
 
 type Mutation {
   register(registerInput: RegisterInput!): Auth!
+  removeOneById(id: String!): String!
+  updateOneById(updateUserInput: UpdateUserInput!): User!
 }
 
 type Query {
+  findAll: [User!]!
+  findOneById(id: String!): User!
   login(loginInput: LoginInput!): Auth!
   loginFacebook: Auth!
   loginGoogle: Auth!
@@ -30,6 +34,16 @@ type Query {
 input RegisterInput {
   email: String!
   fistName: String
+  lastName: String
+  password: String!
+  photo: String
+  role: UserRoles! = CLIENT
+}
+
+input UpdateUserInput {
+  email: String!
+  fistName: String
+  id: String!
   lastName: String
   password: String!
   role: UserRoles! = CLIENT

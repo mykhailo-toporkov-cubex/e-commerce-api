@@ -11,6 +11,7 @@ model User {
   id        String    @id @default(uuid())
   fistName  String?
   lastName  String?
+  photo     String?
   email     String    @unique
   hash      String
   role      UserRoles @default(CLIENT)

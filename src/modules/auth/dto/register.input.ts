@@ -32,6 +32,10 @@ export class RegisterInput {
   @IsEmail()
   email: string;
 
+  @Field(() => String, { nullable: true })
+  @IsOptional()
+  photo: string;
+
   @Field(() => String)
   @IsString()
   @IsNotEmpty()

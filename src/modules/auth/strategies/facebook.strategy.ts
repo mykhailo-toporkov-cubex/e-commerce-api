@@ -26,6 +26,7 @@ export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
       email,
       password: email,
       role: 'CLIENT',
+      photo: '',
     });
 
     return user;

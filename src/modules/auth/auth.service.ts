@@ -55,7 +55,7 @@ export class AuthService {
   }
 
   async register(registerInput: RegisterInput) {
-    const { password, ...rest } = registerInput;
+    const { password, photo, ...rest } = registerInput;
 
     const hash = await argon.hash(password);
 

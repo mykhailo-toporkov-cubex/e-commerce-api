@@ -8,6 +8,7 @@ import { join } from 'path';
 import { AuthModule } from './modules/auth/auth.module';
 import { TokenModule } from './token/token.module';
 import { UserModule } from './modules/user/user.module';
+import { ImageModule } from './modules/image/image.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { UserModule } from './modules/user/user.module';
     AuthModule,
     TokenModule,
     UserModule,
+    ImageModule,
   ],
   providers: [PrismaService],
 })

@@ -25,7 +25,7 @@ export class UserResolver {
     return this.userService.updateOneById(updateUserInput.id, updateUserInput);
   }
 
-  @Mutation(() => User)
+  @Mutation(() => String)
   removeOneById(@Args('id') id: string) {
     return this.userService.removeOneById(id);
   }
